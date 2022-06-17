@@ -9,7 +9,10 @@ Utilizzare gli input presenti nella pagina per permettere all'utente di aggiunge
 // -------------------------------------------------------------------------
 
 // creo array con oggetti, ogni oggetto rappresenta un membro e avrà chiavi per Nome, Ruolo e Foto
-// per ogni elementi dell-array stampo una card secondo il template nel DOM
+// per ogni elementi dell-array stampo una card secondo il template nel DOM usando while per gestire futuri input
+// scrivere funzione per creare template
+// alla pressione del tasto Add le informazioni degli input dati nuovo membro team sono raccolte in una variabile
+// la variabile viene aggiunta all'array con tutti i membri del team
 
 // -------------------------------------------------------------------------
 
@@ -50,25 +53,34 @@ const teamMembersArray = [
   },
 ];
 
-// ciclo for per stampare dinamicamente una card per ciascuno dei 6 membri del team
-// secondo il template fornito in HTML
-for (let i = 0; i < teamMembersArray.length; i++) {
+// ciclo while che stampa tutti gli oggetti dell'array man mano che si popola
+let i = 0;
+while (i < teamMembersArray.length) {
   const thisTeamMember = teamMembersArray[i];
+  drawSingleCard(thisTeamMember);
+  i++;
+}
 
-  //   template compilato con i dati dei singoli membri
+// -------------------------------------------------------------------------
+// FUNCTIONS
+// -------------------------------------------------------------------------
+
+// disegna una card singola per ogni oggetto team member
+function drawSingleCard(teamMemberObject) {
+  // crea una card e la appende al contenitore
   const cardToDraw = `
-<div class="team-card">
-        <div class="card-image">
-        <img
-                src="img/${thisTeamMember.foto}"
-                alt="${thisTeamMember.nome}"
-        />
-        </div>
-        <div class="card-text">
-            <h3>${thisTeamMember.nome}</h3>
-            <p>${thisTeamMember.ruolo}</p>
-        </div>
-</div>`;
+  <div class="team-card">
+  <div class="card-image">
+  <img
+  src="img/${teamMemberObject.foto}"
+  alt="${teamMemberObject.nome}"
+  />
+  </div>
+  <div class="card-text">
+  <h3>${teamMemberObject.nome}</h3>
+  <p>${teamMemberObject.ruolo}</p>
+  </div>
+  </div>`;
 
   // concatenazione in HTML
   teamContainer.innerHTML += cardToDraw;
