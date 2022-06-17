@@ -11,6 +11,12 @@ Utilizzare gli input presenti nella pagina per permettere all'utente di aggiunge
 // creo array con oggetti, ogni oggetto rappresenta un membro e avrà chiavi per Nome, Ruolo e Foto
 // per ogni elementi dell-array stampo una card secondo il template nel DOM
 
+// -------------------------------------------------------------------------
+
+// variabile target dentro cui appendere le card
+const teamContainer = document.querySelector('.team-container');
+
+// array che contiene i membri del team
 const teamMembersArray = [
   {
     nome: 'Wayne Barnett',
@@ -43,4 +49,27 @@ const teamMembersArray = [
     foto: 'barbara-ramos-graphic-designer.jpg',
   },
 ];
-console.log('array', teamMembersArray);
+
+// ciclo for per stampare dinamicamente una card per ciascuno dei 6 membri del team
+// secondo il template fornito in HTML
+for (let i = 0; i < teamMembersArray.length; i++) {
+  const thisTeamMember = teamMembersArray[i];
+
+  //   template compilato con i dati dei singoli membri
+  const cardToDraw = `
+<div class="team-card">
+        <div class="card-image">
+        <img
+                src="img/${thisTeamMember.foto}"
+                alt="${thisTeamMember.nome}"
+        />
+        </div>
+        <div class="card-text">
+            <h3>${thisTeamMember.nome}</h3>
+            <p>${thisTeamMember.ruolo}</p>
+        </div>
+</div>`;
+
+  // concatenazione in HTML
+  teamContainer.innerHTML += cardToDraw;
+}
