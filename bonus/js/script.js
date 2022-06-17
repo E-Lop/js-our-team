@@ -56,15 +56,16 @@ const teamMembersArray = [
   },
 ];
 
-addBtn.addEventListener('click', addNewMember);
 printAllTeamMembers(teamMembersArray);
+
+addBtn.addEventListener('click', addNewMember);
 
 // -------------------------------------------------------------------------
 // FUNCTIONS
 // -------------------------------------------------------------------------
-// funzione che stampa le card degli oggetti nell'array
+// funzione che stampa le card degli oggetti già presenti nell'array
 function printAllTeamMembers(teamMembersArray) {
-  // ciclo while che stampa tutti gli oggetti dell'array man mano che si popola
+  // ciclo while che stampa tutti gli oggetti dell'array
   let i = 0;
   while (i < teamMembersArray.length) {
     const thisTeamMember = teamMembersArray[i];
@@ -73,7 +74,7 @@ function printAllTeamMembers(teamMembersArray) {
   }
 }
 
-// crea un nuovo oggetto con gli elementi di input dei form
+// crea un nuovo oggetto con gli elementi di input dei form, lo aggiunge all'array e stampa la card in pagina
 function addNewMember() {
   // variabile per nome nuovo membro
   const newMemberName = document.getElementById('name').value;
@@ -90,8 +91,7 @@ function addNewMember() {
   // aggiungo oggetto ad array generale
   teamMembersArray.push(newMemberObject);
   // stampo quest'ultima card
-  printAllTeamMembers(teamMembersArray);
-  console.log('array generale', teamMembersArray);
+  drawSingleCard(newMemberObject);
 }
 
 // disegna una card singola per ogni oggetto team member
