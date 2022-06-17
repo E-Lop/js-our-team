@@ -9,10 +9,11 @@ Utilizzare gli input presenti nella pagina per permettere all'utente di aggiunge
 // -------------------------------------------------------------------------
 
 // creo array con oggetti, ogni oggetto rappresenta un membro e avrà chiavi per Nome, Ruolo e Foto
-// per ogni elementi dell-array stampo una card secondo il template nel DOM usando while per gestire futuri input
+// stampo gli elementi già presenti nell'array secondo il template nel DOM
 // scrivere funzione per creare template
 // alla pressione del tasto Add le informazioni degli input dati nuovo membro team sono raccolte in un oggetto
 // che viene aggiunto all'array con tutti i membri del team
+// l'oggetto con il nuovo membro viene stampato in pagina
 
 // -------------------------------------------------------------------------
 
