@@ -11,15 +11,18 @@ Utilizzare gli input presenti nella pagina per permettere all'utente di aggiunge
 // creo array con oggetti, ogni oggetto rappresenta un membro e avrà chiavi per Nome, Ruolo e Foto
 // per ogni elementi dell-array stampo una card secondo il template nel DOM usando while per gestire futuri input
 // scrivere funzione per creare template
-// alla pressione del tasto Add le informazioni degli input dati nuovo membro team sono raccolte in una variabile
-// la variabile viene aggiunta all'array con tutti i membri del team
+// alla pressione del tasto Add le informazioni degli input dati nuovo membro team sono raccolte in un oggetto
+// che viene aggiunto all'array con tutti i membri del team
 
 // -------------------------------------------------------------------------
 
 // variabile target dentro cui appendere le card
 const teamContainer = document.querySelector('.team-container');
+// variabile per bottone Add
+const addBtn = document.getElementById('addMemberButton');
 
 // array che contiene i membri del team
+
 const teamMembersArray = [
   {
     nome: 'Wayne Barnett',
@@ -53,17 +56,43 @@ const teamMembersArray = [
   },
 ];
 
-// ciclo while che stampa tutti gli oggetti dell'array man mano che si popola
-let i = 0;
-while (i < teamMembersArray.length) {
-  const thisTeamMember = teamMembersArray[i];
-  drawSingleCard(thisTeamMember);
-  i++;
-}
+addBtn.addEventListener('click', addNewMember);
+printAllTeamMembers(teamMembersArray);
 
 // -------------------------------------------------------------------------
 // FUNCTIONS
 // -------------------------------------------------------------------------
+// funzione che stampa le card degli oggetti nell'array
+function printAllTeamMembers(teamMembersArray) {
+  // ciclo while che stampa tutti gli oggetti dell'array man mano che si popola
+  let i = 0;
+  while (i < teamMembersArray.length) {
+    const thisTeamMember = teamMembersArray[i];
+    drawSingleCard(thisTeamMember);
+    i++;
+  }
+}
+
+// crea un nuovo oggetto con gli elementi di input dei form
+function addNewMember() {
+  // variabile per nome nuovo membro
+  const newMemberName = document.getElementById('name').value;
+  // variabile per ruolo nuovo membro
+  const newMemberRole = document.getElementById('role').value;
+  // variabile per foto nuovo membro
+  const newMemberImage = document.getElementById('image').value;
+
+  const newMemberObject = {
+    nome: newMemberName,
+    ruolo: newMemberRole,
+    foto: newMemberImage,
+  };
+  // aggiungo oggetto ad array generale
+  teamMembersArray.push(newMemberObject);
+  // stampo quest'ultima card
+  printAllTeamMembers(teamMembersArray);
+  console.log('array generale', teamMembersArray);
+}
 
 // disegna una card singola per ogni oggetto team member
 function drawSingleCard(teamMemberObject) {
